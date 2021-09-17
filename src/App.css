@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.background {
+  background-image: url('./background.jpeg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  height: 480px;
+}
+
+a {
+  text-decoration: none !important;
+}
+a:hover {
+  text-decoration: none !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
