@@ -12,6 +12,7 @@ import Loader from './components/Loader';
 function App() {
   const [shoes, setShoes] = useState(Data);
   const [loading, setLoading] = useState(null);
+  const [stock, setStock] = useState([10, 11, 12]);
 
   if (loading) return <Loader type="spin" color="red" message={'Loading...'} />;
 
@@ -55,7 +56,7 @@ function App() {
           </button>
         </Route>
         <Route exact path="/detail/:id">
-          <Detail shoes={shoes} />
+          <Detail shoes={shoes} stock={stock} setStock={setStock} />
         </Route>
       </Switch>
     </main>

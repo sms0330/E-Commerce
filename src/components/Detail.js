@@ -12,7 +12,7 @@ const Title = styled.h4`
   color: ${props => props.color};
 `;
 
-const Detail = ({ shoes }) => {
+const Detail = ({ shoes, stock, setStock }) => {
   const [alert, setAlert] = useState(true);
   const [alert2, setAlert2] = useState(false);
   const [data, setData] = useState(null);
@@ -80,8 +80,18 @@ const Detail = ({ shoes }) => {
         <div className="col-md-6 mt-4">
           <h4 className="pt-5">{findShoes.title}</h4>
           <p>{findShoes.content}</p>
-          <p>{findShoes.price}</p>
-          <button className="btn btn-danger">Order</button>
+          <p>${findShoes.price}</p>
+
+          <Info stock={stock}></Info>
+
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              setStock([9, 11, 12]);
+            }}
+          >
+            Order
+          </button>
           <button
             className="btn btn-primary"
             onClick={() => {
@@ -94,6 +104,10 @@ const Detail = ({ shoes }) => {
       </div>
     </div>
   );
+
+  function Info() {
+    return <p>Stock : {stock[0]} </p>;
+  }
 };
 
 export default Detail;
