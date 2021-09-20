@@ -3,6 +3,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
 import {stockContext} from '../App'
+import { Nav } from 'react-bootstrap';
+import { CSSTransition } from 'react-transition-group';
 
 const Box = styled.div`
   padding: 20px;
@@ -17,6 +19,8 @@ const Detail = ({ shoes }) => {
   const [alert, setAlert] = useState(true);
   const [alert2, setAlert2] = useState(false);
   const [data, setData] = useState(null);
+  const [tab, setTab] = useState(0);
+  const [trigger, setTrigger] = useState(false);
 
   const { stock, setStock } = useContext(stockContext);
 
@@ -105,12 +109,44 @@ const Detail = ({ shoes }) => {
           </button>
         </div>
       </div>
+      <div>
+        <Nav variant="tabs" defaultActiveKey="link-0">
+          <Nav.Item>
+            <Nav.Link eventKey="link-0" onClick={()=>{ setTrigger(false); setTab(0) }}>Active</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="link-1" onClick={()=>{ setTrigger(false); setTab(1) }}>Option 1</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="link-2" onClick={()=>{ setTrigger(false); setTab(2) }}>Option 2</Nav.Link>
+          </Nav.Item>
+        </Nav>
+        <CSSTransition in={trigger} classNames="wow" timeout={500}>
+          <TabContent tab={tab} setTrigger={setTrigger} />
+        </CSSTransition>
+      </div>
     </div>
   );
 
   function Info() {
     return <p>Stock : {stock[0]} </p>;
   }
+
+  function TabContent(props){
+
+    useEffect( ()=>{
+      props.setTrigger(true); //탭Contents  컴포넌트가 로드될 때 true
+    });
+  
+    if (props.tab === 0){
+      return <div>Contents 0</div>
+    } else if (props.tab === 1){
+      return <div>Contents 1</div>
+    } else if (props.tab === 2){
+      return <div>Contents 2</div>
+    }
+  }
+  
 };
 
 export default Detail;

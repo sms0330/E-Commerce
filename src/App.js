@@ -16,7 +16,7 @@ function App() {
   const [loading, setLoading] = useState(null);
   const [stock, setStock] = useState([10, 11, 12]);
 
-  if (loading) return <Loader type="spin" color="red" message={'Loading...'} />;
+  // if (loading) return <Loader type="spin" color="red" message={'Loading...'} />;
 
   return (
     <main className="App">
@@ -34,6 +34,7 @@ function App() {
             </p>
           </Jumbotron>
           <Card shoes={shoes} />
+          {loading ? <Loader type="spin" color="red" message={'Loading...'} /> : null}
           <button
             className="btn btn-primary"
             onClick={() => {

@@ -4,6 +4,15 @@ $mainColor: #ff0000;
   color: $mainColor;
 }
 
+.wow-enter {
+  opacity: 0;
+}
+
+.wow-enter-active {
+  opacity: 1;
+  transition: all 500ms;
+}
+
 @mixin name() {
   background: #eeeeee;
   padding: 20px;
