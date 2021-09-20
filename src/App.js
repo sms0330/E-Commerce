@@ -9,6 +9,8 @@ import Detail from './components/Detail';
 import axios from 'axios';
 import Loader from './components/Loader';
 
+export const stockContext = React.createContext();
+
 function App() {
   const [shoes, setShoes] = useState(Data);
   const [loading, setLoading] = useState(null);
@@ -56,7 +58,9 @@ function App() {
           </button>
         </Route>
         <Route exact path="/detail/:id">
-          <Detail shoes={shoes} stock={stock} setStock={setStock} />
+          <stockContext.Provider value={{stock, setStock}}>
+            <Detail shoes={shoes} />
+          </stockContext.Provider>  
         </Route>
       </Switch>
     </main>

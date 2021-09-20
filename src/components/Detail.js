@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
+import {stockContext} from '../App'
 
 const Box = styled.div`
   padding: 20px;
@@ -12,10 +13,12 @@ const Title = styled.h4`
   color: ${props => props.color};
 `;
 
-const Detail = ({ shoes, stock, setStock }) => {
+const Detail = ({ shoes }) => {
   const [alert, setAlert] = useState(true);
   const [alert2, setAlert2] = useState(false);
   const [data, setData] = useState(null);
+
+  const { stock, setStock } = useContext(stockContext);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -87,7 +90,7 @@ const Detail = ({ shoes, stock, setStock }) => {
           <button
             className="btn btn-danger"
             onClick={() => {
-              setStock([9, 11, 12]);
+              setStock([stock[0]-1]);
             }}
           >
             Order
